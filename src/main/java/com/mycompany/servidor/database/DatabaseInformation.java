@@ -49,9 +49,7 @@ public class DatabaseInformation
     @Override
     public String toString() {
         return "DatabaseInformation{" + "usuarioDB=" + usuarioDB + ", contrase\u00f1aDB=" + contraseñaDB + ", nombreDB=" + nombreDB + '}';
-    }
-    
-    
+    }    
     
     
 }

@@ -32,27 +32,27 @@ public class Test
     public Test()
     {
         //INSERTAR-ACTUALIZAR-ELIMINAR
-//        System.out.println(MainDataBase.simpleAccordingToTheDatabase(DataBaseObjective.ORACLE,
+//        System.out.println(Maindatabase.simpleAccordingToTheDatabase(DataBaseObjective.ORACLE,
 //                                                                            new DatabaseInformation("miguel","123","xe"),
 //                                                                            new JugadorVO("12","sfCUENTA","123SDF","@ASD@","@123",1,new Date()),
 //                                                                            TypeOfQuery.ELIMINAR));
         
-//        System.out.println(MainDataBase.simpleAccordingToTheDatabase(DataBaseObjective.ORACLE,
+//        System.out.println(Maindatabase.simpleAccordingToTheDatabase(DataBaseObjective.ORACLE,
 //                                                                            new DatabaseInformation("miguel","123","xe"),
 //                                                                            new PersonajeVO("12","sfCUENTA",1,2,3,"2","1",1,new Date()),
 //                                                                            TypeOfQuery.INSERTAR));
         
-//        System.out.println(MainDataBase.simpleAccordingToTheDatabase(DataBaseObjective.ORACLE,
+//        System.out.println(Maindatabase.simpleAccordingToTheDatabase(DataBaseObjective.ORACLE,
 //                                                                            new DatabaseInformation("miguel","123","xe"),
 //                                                                            new EspecieVO("10","sfCUENTA",1,new Date()),
 //                                                                            TypeOfQuery.INSERTAR));
         
         //LISTAR
-//        System.out.println(MainDataBase.listEspecie(new DatabaseInformation("miguel","123","xe")).size());
+//        System.out.println(Maindatabase.listEspecie(new DatabaseInformation("miguel","123","xe")).size());
         
         //BUSCAR POR ID
-//        System.out.println(MainDataBase.findEspecieById(new DatabaseInformation("miguel","123","xe"),
-//                                                            new EspecieVO("4")));
+        System.out.println(MainDataBase.findEspecieById(new DatabaseInformation("miguel","123","xe"),
+                                                            new EspecieVO("4")));
     }
     
     void TestInsertar()
