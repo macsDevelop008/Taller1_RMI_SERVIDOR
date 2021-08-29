@@ -3,12 +3,13 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.mycompany.servidor.Model;
+package com.mycompany.servidor.database.valueobject;
 
 /**
  *
- * @author 
+ * @author migue
  */
-public class NewClass {
-    
+public interface Tabla 
+{
+    public String nameTable();
 }
