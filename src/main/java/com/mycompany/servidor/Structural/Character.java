@@ -3,20 +3,20 @@ package com.mycompany.servidor.Structural;
 import java.util.Date;
 
 public class Character {
-    private int id;
+    private String id;
     private String name;
-    private int strength;
-    private int mana;
-    private int energy;
-    private int idKind;
-    private int  idPlayer;
-    private boolean state_registration;
+    private double strength;
+    private double mana;
+    private double energy;
+    private String idKind;
+    private String  idPlayer;
+    private double state_registration;
     private Date modification_date;
 
     public Character() {
     }
 
-    public Character(int id, String name, int strength, int mana, int energy, int idKind, int idPlayer, boolean state_registration, Date modification_date) {
+    public Character(String id, String name, double strength, double mana, double energy, String  idKind, String  idPlayer, double state_registration, Date modification_date) {
         this.id = id;
         this.name = name;
         this.strength = strength;
@@ -28,11 +28,11 @@ public class Character {
         this.modification_date = modification_date;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -44,7 +44,7 @@ public class Character {
         this.name = name;
     }
 
-    public int getStrength() {
+    public double getStrength() {
         return strength;
     }
 
@@ -52,7 +52,7 @@ public class Character {
         this.strength = strength;
     }
 
-    public int getMana() {
+    public double getMana() {
         return mana;
     }
 
@@ -60,7 +60,7 @@ public class Character {
         this.mana = mana;
     }
 
-    public int getEnergy() {
+    public double getEnergy() {
         return energy;
     }
 
@@ -68,27 +68,27 @@ public class Character {
         this.energy = energy;
     }
 
-    public int getIdKind() {
+    public String getIdKind() {
         return idKind;
     }
 
-    public void setIdKind(int idKind) {
+    public void setIdKind(String idKind) {
         this.idKind = idKind;
     }
 
-    public int getIdPlayer() {
+    public String getIdPlayer() {
         return idPlayer;
     }
 
-    public void setIdPlayer(int idPlayer) {
+    public void setIdPlayer(String  idPlayer) {
         this.idPlayer = idPlayer;
     }
 
-    public boolean isState_registration() {
+    public double isState_registration() {
         return state_registration;
     }
 
-    public void setState_registration(boolean state_registration) {
+    public void setState_registration(double state_registration) {
         this.state_registration = state_registration;
     }
 

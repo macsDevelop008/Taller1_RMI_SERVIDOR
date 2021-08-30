@@ -56,7 +56,7 @@ public class ConnectionOracle implements IDataBase
         }
 
         try{
-            url="jdbc:oracle:thin:@localhost:1521:"+nombreBD;
+            url="jdbc:oracle:thin:@oracleromtedatabase.serveirc.com:1521:"+nombreBD;
             con = DriverManager.getConnection(url,user,password);
 
             con.setAutoCommit(true);

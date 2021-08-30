@@ -1,25 +1,43 @@
-package com.mycompany.servidor.Model;
+package com.mycompany.servidor.model;
 
-import com.mycompany.servidor.Structural.Character;
-import com.mycompany.servidor.Structural.Player;
-import com.mycompany.servidor.Structural.Sort;
+
+import com.mycompany.servidor.database.DataBaseObjective;
+import com.mycompany.servidor.database.DatabaseInformation;
+import com.mycompany.servidor.database.MainDataBase;
+import com.mycompany.servidor.database.TypeOfQuery;
+import com.mycompany.servidor.database.valueobject.EspecieVO;
+import com.mycompany.servidor.database.valueobject.JugadorVO;
+import com.mycompany.servidor.database.valueobject.PersonajeVO;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;
+import java.util.Date;
 import java.util.List;
 
 public class ServerOperation extends UnicastRemoteObject implements RMIInterface {
 
 
-    public final static String TABLE_ESPECIE = "ESPECIE";
-    public final static String TABLE_JUGADOR = "JUGADOR";
-    public final static String TABLE_PERSONAJE = "PERSONAJE";
-     public ServerOperation() throws RemoteException {
+    /* public final static String TABLE_ESPECIE = "ESPECIE";
+     public final static String TABLE_JUGADOR = "JUGADOR";
+     public final static String TABLE_PERSONAJE = "PERSONAJE";*/
+    public final static String USER = "alex";
+    public final static String PASSWORD = "prueba";
+    public final static String BD = "xe";
+    public final static DatabaseInformation dbi= new DatabaseInformation(USER, PASSWORD, BD);
+    public ServerOperation() throws RemoteException {
 
     }
 
     @Override
-    public void addPlayer(Player player) throws RemoteException {
+    public void addPlayer(JugadorVO player) throws RemoteException {
+        MainDataBase.simpleAccordingToTheDatabase(DataBaseObjective.ORACLE,
+                dbi, new JugadorVO(player.getId(),
+                        player.getCuenta(),
+                        player.getContraseña(),
+                        player.getApodo(),
+                        player.getEmail(),
+                        player.getEstadoRegistro(),
+                        player.getFechaModificacion()), TypeOfQuery.INSERTAR);
 
     }
 
@@ -34,7 +52,11 @@ public class ServerOperation extends UnicastRemoteObject implements RMIInterface
     }
 
     @Override
-    public void deletePlayer(int id) throws RemoteException {
+    public void deletePlayer(String id) throws RemoteException {
+        MainDataBase.simpleAccordingToTheDatabase(DataBaseObjective.ORACLE,
+                dbi,
+                new JugadorVO(id),
+                TypeOfQuery.ELIMINAR);
 
     }
 
@@ -44,37 +66,80 @@ public class ServerOperation extends UnicastRemoteObject implements RMIInterface
     }
 
     @Override
-    public void deleteSort(int id) throws RemoteException {
-
+    public void deleteSort(String id) throws RemoteException {
+        MainDataBase.simpleAccordingToTheDatabase(DataBaseObjective.ORACLE,
+                dbi,
+                new EspecieVO(id),
+                TypeOfQuery.ELIMINAR);
     }
 
     @Override
-    public Player getPlayer(int id) throws RemoteException {
-        return null;
+    public JugadorVO getPlayer(String id) throws RemoteException {
+
+        return MainDataBase.findJugadorById(dbi,
+                new JugadorVO(id));
     }
 
     @Override
-    public Character getCharacter(int id) throws RemoteException {
-        return null;
+    public PersonajeVO getCharacter(String id) throws RemoteException {
+        return MainDataBase.findPersonajeById(dbi,
+                new PersonajeVO(id));
     }
 
     @Override
-    public Sort getSort(int id) throws RemoteException {
-        return null;
+    public EspecieVO getSort(String id) throws RemoteException {
+        return MainDataBase.findEspecieById(dbi,
+                new EspecieVO(id));
     }
 
     @Override
-    public List<Player> getPlayers() throws RemoteException {
-        return null;
+    public void updatePlayer(JugadorVO player) throws RemoteException {
+            MainDataBase.simpleAccordingToTheDatabase(DataBaseObjective.ORACLE,
+                    dbi, new JugadorVO(player.getId(),
+                        player.getCuenta(),
+                        player.getContraseña(),
+                        player.getApodo(),
+                        player.getEmail(),
+                        player.getEstadoRegistro(),
+                        player.getFechaModificacion()), TypeOfQuery.ACTUALIZAR);
+    }
+
+  @Override
+    public void updateCharacter(PersonajeVO character) throws RemoteException {
+      MainDataBase.simpleAccordingToTheDatabase(DataBaseObjective.ORACLE,
+              dbi, new PersonajeVO(character.getId(),
+                      character.getNombre(),
+                      character.getFuerza(),
+                      character.getMana(),
+                      character.getEnergia(),
+                      character.getId_especie(),
+                      character.getId_jugador(),
+                      character.getEstadoRegistro(),
+                      character.getFechaModificacion()), TypeOfQuery.ACTUALIZAR);
     }
 
     @Override
-    public List<Character> getCharacters() throws RemoteException {
-        return null;
+    public void updateSort(EspecieVO sort) throws RemoteException {
+        MainDataBase.simpleAccordingToTheDatabase(DataBaseObjective.ORACLE,
+                dbi, new EspecieVO(sort.getId(),
+                        sort.getNombre(),
+                        sort.getEstadoRegistro(),
+                        sort.getFechaModificacion()),
+                TypeOfQuery.ACTUALIZAR);
     }
 
     @Override
-    public List<Sort> getSorts() throws RemoteException {
-        return null;
+    public List<JugadorVO> getPlayers() throws RemoteException {
+        return MainDataBase.listJugador(dbi);
+    }
+
+    @Override
+    public List<PersonajeVO> getCharacters() throws RemoteException {
+        return MainDataBase.listPersonaje(dbi);
+    }
+
+    @Override
+    public List<EspecieVO> getSorts() throws RemoteException {
+        return MainDataBase.listEspecie(dbi);
     }
 }

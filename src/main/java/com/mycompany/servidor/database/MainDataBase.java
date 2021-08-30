@@ -16,19 +16,7 @@ import com.mycompany.servidor.database.valueobject.PersonajeVO;
 import com.mycompany.servidor.database.valueobject.Tabla;
 import java.util.ArrayList;
 
-/**
- *
- * @author migue
- */
-enum DataBaseObjective
-{
-    ORACLE
-}
-enum TypeOfQuery
-{
-    INSERTAR, ACTUALIZAR, ELIMINAR, LISTAR, BUSCAR_POR_ID
-}
-public class MainDataBase 
+public class MainDataBase
 {
    
     //Consultas -> INSERTAS-ACTUALIZAR-ELIMINAR

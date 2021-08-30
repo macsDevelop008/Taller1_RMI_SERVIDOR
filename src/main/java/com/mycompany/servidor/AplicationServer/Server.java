@@ -5,7 +5,7 @@
  */
 
 package com.mycompany.servidor.AplicationServer;
-import com.mycompany.servidor.Model.ServerOperation;
+import com.mycompany.servidor.model.ServerOperation;
 
 import java.rmi.*;
 import java.rmi.registry.LocateRegistry;

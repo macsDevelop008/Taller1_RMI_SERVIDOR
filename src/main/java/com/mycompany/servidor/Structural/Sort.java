@@ -3,26 +3,26 @@ package com.mycompany.servidor.Structural;
 import java.util.Date;
 
 public class Sort {
-    private int id;
+    private String id;
     private String name;
-    private boolean state_registration;
+    private double state_registration;
     private Date modification_date;
 
     public Sort(){
 
     }
-    public Sort(int id, String name, boolean state_registry, Date date_modification) {
+    public Sort(String id, String name, double state_registry, Date date_modification) {
         this.id = id;
         this.name = name;
         this.state_registration = state_registry;
         this.modification_date = date_modification;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -34,11 +34,11 @@ public class Sort {
         this.name = name;
     }
 
-    public boolean isState_registration() {
+    public double isState_registration() {
         return state_registration;
     }
 
-    public void setState_registration(boolean state_registration) {
+    public void setState_registration(double state_registration) {
         this.state_registration = state_registration;
     }
 

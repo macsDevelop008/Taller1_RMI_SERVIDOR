@@ -3,19 +3,19 @@ package com.mycompany.servidor.Structural;
 import java.util.Date;
 
 public class Player {
-    private int id;
+    private String id;
     private String account;
     private String password;
     private String nickname;
     private String email;
-    private boolean state_registration;
+    private double state_registration;
     private Date modification_date;
 
     public Player(){
 
     }
 
-    public Player(int id, String account, String password, String nickname, String email, boolean state_registry, Date modification_date) {
+    public Player(String id, String account, String password, String nickname, String email, double state_registry, Date modification_date) {
         this.id = id;
         this.account = account;
         this.password = password;
@@ -25,11 +25,11 @@ public class Player {
         this.modification_date = modification_date;
     }
 
-    public int getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(int id) {
+    public void setId(String id) {
         this.id = id;
     }
 
@@ -65,11 +65,11 @@ public class Player {
         this.email = email;
     }
 
-    public boolean isState_registration() {
+    public double isState_registration() {
         return state_registration;
     }
 
-    public void setState_registration(boolean state_registration) {
+    public void setState_registration(double state_registration) {
         this.state_registration = state_registration;
     }
 

@@ -32,11 +32,11 @@ public class Test
     public Test()
     {
         //INSERTAR-ACTUALIZAR-ELIMINAR
-//        System.out.println(Maindatabase.simpleAccordingToTheDatabase(DataBaseObjective.ORACLE,
-//                                                                            new DatabaseInformation("miguel","123","xe"),
-//                                                                            new JugadorVO("12","sfCUENTA","123SDF","@ASD@","@123",1,new Date()),
-//                                                                            TypeOfQuery.ELIMINAR));
-        
+     System.out.println(MainDataBase.simpleAccordingToTheDatabase(DataBaseObjective.ORACLE,
+                                                                           new DatabaseInformation("alex","prueba","xe"),
+                                                                            new JugadorVO("12"),
+                                                                            TypeOfQuery.ELIMINAR));
+
 //        System.out.println(Maindatabase.simpleAccordingToTheDatabase(DataBaseObjective.ORACLE,
 //                                                                            new DatabaseInformation("miguel","123","xe"),
 //                                                                            new PersonajeVO("12","sfCUENTA",1,2,3,"2","1",1,new Date()),
@@ -51,8 +51,8 @@ public class Test
 //        System.out.println(Maindatabase.listEspecie(new DatabaseInformation("miguel","123","xe")).size());
         
         //BUSCAR POR ID
-        System.out.println(MainDataBase.findEspecieById(new DatabaseInformation("miguel","123","xe"),
-                                                            new EspecieVO("4")));
+        /*System.out.println(MainDataBase.findEspecieById(new DatabaseInformation("alex","prueba","xe"),
+                                                            new EspecieVO("4")));*/
     }
     
     void TestInsertar()
