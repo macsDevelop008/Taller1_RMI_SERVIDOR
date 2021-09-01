@@ -51,8 +51,13 @@ public class Test
 //        System.out.println(Maindatabase.listEspecie(new DatabaseInformation("miguel","123","xe")).size());
         
         //BUSCAR POR ID
-        System.out.println(MainDataBase.findEspecieById(new DatabaseInformation("miguel","123","xe"),
-                                                            new EspecieVO("4")));
+//        System.out.println(MainDataBase.findEspecieById(new DatabaseInformation("miguel","123","xe"),
+//                                                            new EspecieVO("4")));
+        
+        //Lita de todos los personajes segun el jugador
+         System.out.println(MainDataBase.listPersonajesSegunJugador(new DatabaseInformation("miguel","123","xe"),
+                                                            new PersonajeVO("3",new Date())).size());
+        
     }
     
     void TestInsertar()

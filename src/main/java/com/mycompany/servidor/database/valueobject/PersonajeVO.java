@@ -26,6 +26,7 @@ public class PersonajeVO implements Serializable, Tabla
     private double estadoRegistro;
     private Date fechaModificacion;
 
+    
     public PersonajeVO(String id, String nombre, double fuerza, double mana, double energia, String id_especie, String id_jugador, double estadoRegistro, Date fechaModificacion) {
         this.id = id;
         this.nombre = nombre;
@@ -38,9 +39,18 @@ public class PersonajeVO implements Serializable, Tabla
         this.fechaModificacion = fechaModificacion;
     }
 
-    public PersonajeVO(String id) {
+    public PersonajeVO(String id) 
+    {
         this.id = id;
     }
+
+    public PersonajeVO(String id_jugador, Date fechaModificacion) 
+    {
+        this.id_jugador = id_jugador;
+        this.fechaModificacion = fechaModificacion;
+    }
+    
+    
     
     public String getId() {
         return id;
