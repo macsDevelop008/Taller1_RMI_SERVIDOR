@@ -188,5 +188,15 @@ public class PersonajeBO implements IPersonajeBO
         }  
         return result;
     }
-    
+    public ArrayList<PersonajeVO> charactersAccordingToPlayer(PersonajeVO personajeVO)
+    {
+        ArrayList<PersonajeVO> result = new ArrayList<>();
+
+        String sql = "SELECT * FROM personaje WHERE id_jugador =" + personajeVO.getId_jugador();
+        System.out.println(sql);
+
+        result = descomposeResultSet(dataBase.ConectarBaseDatos(user, password, nombreBD).executeQueryStatement(sql));
+
+        return result;
+    }
 }

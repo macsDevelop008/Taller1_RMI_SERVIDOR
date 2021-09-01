@@ -159,4 +159,8 @@ public class ServerOperation extends UnicastRemoteObject implements RMIInterface
     public List<EspecieVO> getSorts() throws RemoteException {
         return MainDataBase.listEspecie(dbi);
     }
+    @Override
+    public List<PersonajeVO> getCharactersByPlayer(PersonajeVO player) throws RemoteException {
+        return MainDataBase.listPersonajesSegunJugador(dbi, player);
+    }
 }

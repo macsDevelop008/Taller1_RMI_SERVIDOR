@@ -237,9 +237,23 @@ public class MainDataBase
          
         return especieVO;
     }
-    
-    
-    
+
+
+    public static ArrayList<PersonajeVO> listPersonajesSegunJugador(DatabaseInformation databaseInformation, Tabla objectVO)
+    {
+        ConnectionOracleFactory dbOracle = new ConnectionOracleFactory();
+
+        PersonajeBO personajeBO = new PersonajeBO(dbOracle,
+                databaseInformation.getUsuarioDB(),
+                databaseInformation.getContraseñaDB(),
+                databaseInformation.getNombreDB());
+
+        ArrayList<PersonajeVO> list = new ArrayList<>();
+
+        list = personajeBO.charactersAccordingToPlayer((PersonajeVO)objectVO);
+
+        return list;
+    }
     //----------------------------------------------------------------------------------------------
     
 //    static ArrayList<JugadorVO> listJugador(JugadorBO jugadorBO, TypeOfQuery typeQuery)
