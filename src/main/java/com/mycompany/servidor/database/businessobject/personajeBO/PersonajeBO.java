@@ -93,7 +93,7 @@ public class PersonajeBO implements IPersonajeBO
                 "id_especie='"+idEspecie+"'"+","+
                 "id_jugador='"+idJugador+"'"+","+"estado_registro="+estadoRegistro+","+
                 "fecha_modificacion="+"TO_DATE('"+ strDateFormat +"'"+","+ "'DD/MM/YYYY')"+
-                "WHERE id="+id;
+                "WHERE id="+"'"+id+"'";
         
         System.out.println(sql);
         result = dataBase.ConectarBaseDatos(user, password, nombreBD).executeUpdateStatement(sql);
@@ -108,7 +108,7 @@ public class PersonajeBO implements IPersonajeBO
         
         String id = personajeVO.getId();
         
-        String sql = "DELETE FROM "+ NOMBRE_TABLA_SQL +" WHERE id ="+ id;
+        String sql = "DELETE FROM "+ NOMBRE_TABLA_SQL +" WHERE id ="+ "'"+id+"'";
         System.out.println(sql);
         result = dataBase.ConectarBaseDatos(user, password, nombreBD).executeUpdateStatement(sql);
         
@@ -133,7 +133,7 @@ public class PersonajeBO implements IPersonajeBO
     {
         ArrayList<PersonajeVO> result = new ArrayList<>();
         
-        String sql = "SELECT * FROM "+ NOMBRE_TABLA_SQL + " WHERE id ="+ personajeVO.getId();
+        String sql = "SELECT * FROM "+ NOMBRE_TABLA_SQL + " WHERE id ="+ "'"+personajeVO.getId()+"'";
         
         System.out.println(sql);
         result = descomposeResultSet(dataBase.ConectarBaseDatos(user, password, nombreBD).executeQueryStatement(sql));
@@ -145,7 +145,7 @@ public class PersonajeBO implements IPersonajeBO
     {
         ArrayList<PersonajeVO> result = new ArrayList<>();
         
-        String sql = "SELECT * FROM personaje WHERE id_jugador =" + personajeVO.getId_jugador();        
+        String sql = "SELECT * FROM personaje WHERE id_jugador =" + "'"+personajeVO.getId_jugador()+"'";        
         System.out.println(sql);
         
         result = descomposeResultSet(dataBase.ConectarBaseDatos(user, password, nombreBD).executeQueryStatement(sql));

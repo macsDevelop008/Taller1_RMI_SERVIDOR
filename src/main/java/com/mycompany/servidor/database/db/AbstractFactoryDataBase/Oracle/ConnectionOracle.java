@@ -40,9 +40,6 @@ public class ConnectionOracle implements IDataBase
         return conexionOracle;
     }
 
-//    public ConnectionOracle() {
-//        this("miguel","123");
-//    }
 
     //Metodo para conectarce a una base de datos
     private void conectar(){
@@ -60,9 +57,9 @@ public class ConnectionOracle implements IDataBase
             con = DriverManager.getConnection(url,user,password);
 
             con.setAutoCommit(true);
-            System.out.println("Conexion exitosa...");
+            System.out.println("Conexion exitosa: ORACLE");
         }catch(Exception e){
-            System.out.println("Error al conectarce: "+e);
+            System.out.println("Error al conectarce: ORACLE "+e);
         }
     }
 
@@ -76,10 +73,10 @@ public class ConnectionOracle implements IDataBase
         {
             stmt = con.createStatement();
             res = stmt.executeQuery(cad);
-            System.out.println("Consulta realizada...  ");
+            System.out.println("Consulta realizada: ORACLE");
         }
         catch(Exception ex){
-            System.out.println("No se pudo efectuar la consulta..." + ex);
+            System.out.println("No se pudo efectuar la consulta: ORACLE" + ex);
         }
 
         return res;
@@ -94,20 +91,19 @@ public class ConnectionOracle implements IDataBase
         {
             stmt = con.createStatement();
             r = stmt.executeUpdate(cad);
-            System.out.println("Actualizacion realizada...  " + r);
+            System.out.println("Consulta realizada: ORACLE" + r);
             //con.commit();
             stmt.close();
             return true;
         }
         catch(Exception ex)
         {
-            System.out.println("No se pudo efectuar la grabacion..." + ex);
+            System.out.println("No se pudo efectuar la consulta: ORACLE" + ex);
             return false;
         }
     }
 
     //Metodo para invocar un procedimiento almacenado
-    @Override
     public void executeProcedure(String cadProc)
     {
         try
@@ -126,7 +122,6 @@ public class ConnectionOracle implements IDataBase
 
 
     //Objeto que cierra la conexion con la base de datos.
-    @Override
     public void closeConecction()
     {
         try

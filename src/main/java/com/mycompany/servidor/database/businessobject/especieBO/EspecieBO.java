@@ -80,7 +80,7 @@ public class EspecieBO implements IEspecieBO
                         "nombre ="+"'"+nombre+"'"+","+ 
                         "estado_registro ="+ estadoRegistro +","+ 
                         "fecha_modificacion = TO_DATE("+"'"+strDateFormat+"'"+","+"'DD/MM/YYYY')"+ 
-                        "WHERE id =" + id;
+                        "WHERE id =" + "'"+id+"'";
         
         System.out.println(sql);
         result = dataBase.ConectarBaseDatos(user, password, nombreBD).executeUpdateStatement(sql);
@@ -94,7 +94,7 @@ public class EspecieBO implements IEspecieBO
         
         String id = especieVO.getId();      
         
-        String sql = "DELETE FROM "+ NOMBRE_TABLA_SQL +" WHERE id ="+ id;
+        String sql = "DELETE FROM "+ NOMBRE_TABLA_SQL +" WHERE id ="+ "'"+id+"'";
         System.out.println(sql);
         result = dataBase.ConectarBaseDatos(user, password, nombreBD).executeUpdateStatement(sql);
         
@@ -119,7 +119,7 @@ public class EspecieBO implements IEspecieBO
     {
         ArrayList<EspecieVO> result = new ArrayList<>();
         
-        String sql = "SELECT * FROM "+ NOMBRE_TABLA_SQL + " WHERE id ="+especieVO.getId();
+        String sql = "SELECT * FROM "+ NOMBRE_TABLA_SQL + " WHERE id ="+"'"+especieVO.getId()+"'";
         
         System.out.println(sql);
         result = descomposeResultSet(dataBase.ConectarBaseDatos(user, password, nombreBD).executeQueryStatement(sql));

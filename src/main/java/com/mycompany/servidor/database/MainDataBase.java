@@ -5,6 +5,7 @@
  */
 package com.mycompany.servidor.database;
 
+import com.mycompany.servidor.DataBase.db.AbstractFactoryDataBase.PostgreSQL.ConnectionPostgresFactory;
 import com.mycompany.servidor.database.businessobject.especieBO.EspecieBO;
 import com.mycompany.servidor.database.businessobject.jugadorBO.JugadorBO;
 import com.mycompany.servidor.database.businessobject.personajeBO.PersonajeBO;
@@ -22,7 +23,7 @@ import java.util.ArrayList;
  */
 enum DataBaseObjective
 {
-    ORACLE
+    ORACLE, POSTGRESQL
 }
 enum TypeOfQuery
 {
@@ -36,51 +37,46 @@ public class MainDataBase
                                                         Tabla objectVO, TypeOfQuery typeQuery)
     {
         boolean resultado = false;
+        IDataBaseFactory dbObjective = null;
         
-        //Base de datos
-        switch(dataBase)
+        //Base de datos objetivo
+        dbObjective = selectDBFactory(dataBase);
+                     
+        //Tabla
+        switch(objectVO.nameTable())
         {
-            case ORACLE:
-                
-                ConnectionOracleFactory dbOracle = new ConnectionOracleFactory();
-                
-                //Tabla
-                switch(objectVO.nameTable())
-                {
-                    case "jugador":
-                        
-                        JugadorBO jugadorBO = new JugadorBO(dbOracle, 
-                            databaseInformation.getUsuarioDB(), 
-                            databaseInformation.getContraseñaDB(), 
-                            databaseInformation.getNombreDB());
-                        
-                        resultado = tableJugadorSimple(jugadorBO, objectVO, typeQuery);
-                        
-                        break;
-                        
-                    case "personaje":
-                        
-                        PersonajeBO personajeBO = new PersonajeBO(dbOracle, 
-                            databaseInformation.getUsuarioDB(), 
-                            databaseInformation.getContraseñaDB(), 
-                            databaseInformation.getNombreDB());
-                        
-                        resultado = tablePersonajeSimple(personajeBO, objectVO, typeQuery);
-                        
-                        break;
-                    
-                    case "especie":
-                        
-                            EspecieBO especiejeBO = new EspecieBO(dbOracle, 
-                            databaseInformation.getUsuarioDB(), 
-                            databaseInformation.getContraseñaDB(), 
-                            databaseInformation.getNombreDB());
-                        
-                        resultado = tableEspeciejeSimple(especiejeBO, objectVO, typeQuery);
-                        break;
-                }               
-                break;
-        }
+            case "jugador":
+
+                JugadorBO jugadorBO = new JugadorBO(dbObjective, 
+                    databaseInformation.getUsuarioDB(), 
+                    databaseInformation.getContraseñaDB(), 
+                    databaseInformation.getNombreDB());
+
+                resultado = tableJugadorSimple(jugadorBO, objectVO, typeQuery);
+
+            break;
+
+            case "personaje":
+
+                PersonajeBO personajeBO = new PersonajeBO(dbObjective, 
+                    databaseInformation.getUsuarioDB(), 
+                    databaseInformation.getContraseñaDB(), 
+                    databaseInformation.getNombreDB());
+
+                resultado = tablePersonajeSimple(personajeBO, objectVO, typeQuery);
+
+            break;
+
+            case "especie":
+
+                    EspecieBO especiejeBO = new EspecieBO(dbObjective, 
+                    databaseInformation.getUsuarioDB(), 
+                    databaseInformation.getContraseñaDB(), 
+                    databaseInformation.getNombreDB());
+
+                resultado = tableEspeciejeSimple(especiejeBO, objectVO, typeQuery);
+            break;
+        }  
         
         return resultado;
     }
@@ -150,11 +146,15 @@ public class MainDataBase
     //---------------------------------------------------------------------------------------------
     
     
-    public static ArrayList<JugadorVO> listJugador(DatabaseInformation databaseInformation)
+    public static ArrayList<JugadorVO> listJugador(DataBaseObjective dataBase, DatabaseInformation databaseInformation)
     {
-        ConnectionOracleFactory dbOracle = new ConnectionOracleFactory();
         
-        JugadorBO jugadorBO = new JugadorBO(dbOracle, 
+        IDataBaseFactory dbObjective = null;
+        
+        //Base de datos objetivo
+        dbObjective = selectDBFactory(dataBase);
+        
+        JugadorBO jugadorBO = new JugadorBO(dbObjective, 
         databaseInformation.getUsuarioDB(), 
         databaseInformation.getContraseñaDB(), 
         databaseInformation.getNombreDB());
@@ -166,11 +166,16 @@ public class MainDataBase
          return list;
     }
     
-    public static JugadorVO findJugadorById(DatabaseInformation databaseInformation, Tabla objectVO)
+    public static JugadorVO findJugadorById(DataBaseObjective dataBase, DatabaseInformation databaseInformation, Tabla objectVO)
     {
-        ConnectionOracleFactory dbOracle = new ConnectionOracleFactory();
+        //ConnectionOracleFactory dbOracle = new ConnectionOracleFactory();
         
-        JugadorBO jugadorBO = new JugadorBO(dbOracle, 
+        IDataBaseFactory dbObjective = null;
+        
+        //Base de datos objetivo
+        dbObjective = selectDBFactory(dataBase);
+        
+        JugadorBO jugadorBO = new JugadorBO(dbObjective, 
         databaseInformation.getUsuarioDB(), 
         databaseInformation.getContraseñaDB(), 
         databaseInformation.getNombreDB());
@@ -184,11 +189,16 @@ public class MainDataBase
     
     //---------------------------------------------------------------------------------------------
     
-    public static ArrayList<PersonajeVO> listPersonaje(DatabaseInformation databaseInformation)
+    public static ArrayList<PersonajeVO> listPersonaje(DataBaseObjective dataBase, DatabaseInformation databaseInformation)
     {
-        ConnectionOracleFactory dbOracle = new ConnectionOracleFactory();
+        //ConnectionOracleFactory dbOracle = new ConnectionOracleFactory();
         
-        PersonajeBO personajeBO = new PersonajeBO(dbOracle, 
+        IDataBaseFactory dbObjective = null;
+        
+        //Base de datos objetivo
+        dbObjective = selectDBFactory(dataBase);
+        
+        PersonajeBO personajeBO = new PersonajeBO(dbObjective, 
         databaseInformation.getUsuarioDB(), 
         databaseInformation.getContraseñaDB(), 
         databaseInformation.getNombreDB());
@@ -200,11 +210,16 @@ public class MainDataBase
         return list;
     }
     
-    public static PersonajeVO findPersonajeById(DatabaseInformation databaseInformation, Tabla objectVO)
+    public static PersonajeVO findPersonajeById(DataBaseObjective dataBase, DatabaseInformation databaseInformation, Tabla objectVO)
     {
-        ConnectionOracleFactory dbOracle = new ConnectionOracleFactory();
+        //ConnectionOracleFactory dbOracle = new ConnectionOracleFactory();
         
-        PersonajeBO personajeBO = new PersonajeBO(dbOracle, 
+        IDataBaseFactory dbObjective = null;
+        
+        //Base de datos objetivo
+        dbObjective = selectDBFactory(dataBase);
+        
+        PersonajeBO personajeBO = new PersonajeBO(dbObjective, 
         databaseInformation.getUsuarioDB(), 
         databaseInformation.getContraseñaDB(), 
         databaseInformation.getNombreDB());
@@ -216,11 +231,16 @@ public class MainDataBase
         return personajeVO;
     }
     
-    public static ArrayList<PersonajeVO> listPersonajesSegunJugador(DatabaseInformation databaseInformation, Tabla objectVO)
+    public static ArrayList<PersonajeVO> listPersonajesSegunJugador(DataBaseObjective dataBase, DatabaseInformation databaseInformation, Tabla objectVO)
     {
-        ConnectionOracleFactory dbOracle = new ConnectionOracleFactory();
+        //ConnectionOracleFactory dbOracle = new ConnectionOracleFactory();
         
-        PersonajeBO personajeBO = new PersonajeBO(dbOracle, 
+        IDataBaseFactory dbObjective = null;
+        
+        //Base de datos objetivo
+        dbObjective = selectDBFactory(dataBase);
+        
+        PersonajeBO personajeBO = new PersonajeBO(dbObjective, 
         databaseInformation.getUsuarioDB(), 
         databaseInformation.getContraseñaDB(), 
         databaseInformation.getNombreDB());
@@ -234,11 +254,16 @@ public class MainDataBase
     
     //---------------------------------------------------------------------------------------------
     
-    public static ArrayList<EspecieVO> listEspecie(DatabaseInformation databaseInformation)
+    public static ArrayList<EspecieVO> listEspecie(DataBaseObjective dataBase, DatabaseInformation databaseInformation)
     {
-        ConnectionOracleFactory dbOracle = new ConnectionOracleFactory();
+        //ConnectionOracleFactory dbOracle = new ConnectionOracleFactory();
         
-        EspecieBO especieBO = new EspecieBO(dbOracle, 
+        IDataBaseFactory dbObjective = null;
+        
+        //Base de datos objetivo
+        dbObjective = selectDBFactory(dataBase);
+        
+        EspecieBO especieBO = new EspecieBO(dbObjective, 
         databaseInformation.getUsuarioDB(), 
         databaseInformation.getContraseñaDB(), 
         databaseInformation.getNombreDB());
@@ -250,12 +275,15 @@ public class MainDataBase
          return list;
     }
     
-    public static EspecieVO findEspecieById(DatabaseInformation databaseInformation, Tabla objectVO)
+    public static EspecieVO findEspecieById(DataBaseObjective dataBase, DatabaseInformation databaseInformation, Tabla objectVO)
     {
         
-        ConnectionOracleFactory dbOracle = new ConnectionOracleFactory();
+        IDataBaseFactory dbObjective = null;
         
-        EspecieBO especieBO = new EspecieBO(dbOracle, 
+        //Base de datos objetivo
+        dbObjective = selectDBFactory(dataBase);
+        
+        EspecieBO especieBO = new EspecieBO(dbObjective, 
         databaseInformation.getUsuarioDB(), 
         databaseInformation.getContraseñaDB(), 
         databaseInformation.getNombreDB());
@@ -270,6 +298,27 @@ public class MainDataBase
     
     
     //----------------------------------------------------------------------------------------------
+    
+    //Selecciona de forma abstracta la base de datos objetivo
+    static IDataBaseFactory selectDBFactory(DataBaseObjective dataBase)
+    {
+        IDataBaseFactory dbObjective = null;
+        
+        switch(dataBase)
+        {            
+            case ORACLE:
+                
+                    dbObjective = new ConnectionOracleFactory();         
+                break;
+                
+                case POSTGRESQL:
+                    
+                    dbObjective = new ConnectionPostgresFactory();                    
+                break;
+        }
+        
+        return dbObjective;
+    }
     
 //    static ArrayList<JugadorVO> listJugador(JugadorBO jugadorBO, TypeOfQuery typeQuery)
 //    {

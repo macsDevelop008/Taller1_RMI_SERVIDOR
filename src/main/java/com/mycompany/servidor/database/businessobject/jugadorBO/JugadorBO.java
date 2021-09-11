@@ -87,7 +87,7 @@ public class JugadorBO implements IJugadorBO
                 "apodo = '"+apodo+"'"+","+ "email = '"+email+"'"+","+ 
                 "estado_registro ="+ estadoRegistro+","+
                 "fecha_modificacion ="+ "TO_DATE('"+ strDateFormat +"'"+","+ "'DD/MM/YYYY')" +
-                "WHERE id ="+ id;
+                "WHERE id ="+ "'"+id+"'";
         System.out.println(sql);
         result = dataBase.ConectarBaseDatos(user, password, nombreBD).executeUpdateStatement(sql);
         
@@ -102,7 +102,7 @@ public class JugadorBO implements IJugadorBO
         
         String id = jugadorVO.getId();
         
-        String sql = "DELETE FROM "+ NOMBRE_TABLA_SQL +" WHERE id ="+ id;
+        String sql = "DELETE FROM "+ NOMBRE_TABLA_SQL +" WHERE id ="+ "'"+id+"'";
         System.out.println(sql);
         result = dataBase.ConectarBaseDatos(user, password, nombreBD).executeUpdateStatement(sql);
         
@@ -127,7 +127,7 @@ public class JugadorBO implements IJugadorBO
     {
         ArrayList<JugadorVO> result = new ArrayList<>();
         
-        String sql = "SELECT * FROM "+ NOMBRE_TABLA_SQL + " WHERE id ="+ jugadorVO.getId();
+        String sql = "SELECT * FROM "+ NOMBRE_TABLA_SQL + " WHERE id ="+ "'"+jugadorVO.getId()+"'";
         
         System.out.println(sql);
         result = descomposeResultSet(dataBase.ConectarBaseDatos(user, password, nombreBD).executeQueryStatement(sql));
